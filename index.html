@@ -1,36 +1,55 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AIRTECH Aviation School</title>
-
-<link rel="stylesheet" href="CSS/styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Tech Aviation School | Maun, Botswana</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
 
 <header>
- 
+    <div class="header-content">
+        <h1>Air Tech</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="programs.html">Programs</a>
+            <a href="enroll.html">Enroll Now</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
 
+<main>
+    <h1>Welcome to Air Tech Aviation School</h1>
+    <p>Empowering young girls and women to soar in aviation. Safe • Affordable • Inclusive • Located in Maun, Botswana.</p>
+    
+    <img src="1PSSH.jpg" alt="Air Tech Logo" style="max-width:420px;">
 
- 
+    <h2>Our Mission</h2>
+    <p>To break barriers in aviation by creating opportunities for young women and increasing gender diversity in the industry.</p>
+
+    <h2>Our Location – Maun, Botswana</h2>
+    <div id="map"></div>
 </main>
 
 <footer>
-
-<p>&copy;2026 AIRTECH Aviation School All rights reserved </p>
-
+    <p>&copy; 2026 Air Tech Aviation School | Maun, Botswana</p>
+    <p>Empowering Women in Aviation • Diversity • Excellence • Opportunity</p>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    const map = L.map('map').setView([-19.9833, 23.4167], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
 
-
-</body> 
-
+    L.marker([-19.9833, 23.4167]).addTo(map)
+        .bindPopup('<b>Air Tech Aviation School</b><br>Maun, Botswana')
+        .openPopup();
+</script>
+</body>
 </html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Now - Air Tech Aviation School</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>Air Tech</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="programs.html">Programs</a>
+            <a href="enroll.html">Enroll Now</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <h1>Enroll Today</h1>
+    <p>Take the first step toward your aviation career. Fill in the form below.</p>
+
+    <form id="enrollForm">
+        <label>Full Name:</label><br>
+        <input type="text" id="name" required><br><br>
+
+        <label>Email Address:</label><br>
+        <input type="email" id="email" required><br><br>
+
+        <label>Phone Number:</label><br>
+        <input type="tel" id="phone"><br><br>
+
+        <label>Program Interested In:</label><br>
+        <select id="program" required>
+            <option value="">Select a program...</option>
+            <option value="PPL">Private Pilot License (PPL)</option>
+            <option value="Drone">Drone Pilot Certification</option>
+            <option value="Cabin">Cabin Crew & Ground Handling</option>
+            <option value="Advanced">Advanced/Commercial Pilot Training</option>
+        </select><br><br>
+
+        <label>Preferred Study Mode:</label><br>
+        <select id="mode">
+            <option value="Full-time">Full-time</option>
+            <option value="Part-time">Part-time</option>
+        </select><br><br>
+
+        <button type="submit">Submit Application</button>
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2026 Air Tech Aviation School | Maun, Botswana</p>
+</footer>
+
+<script>
+    document.getElementById('enrollForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Thank you! Your application has been received. We will contact you soon.");
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
