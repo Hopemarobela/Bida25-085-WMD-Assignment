@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+     content="width=device-width, initial-scale=1.0">
+    <title>Young Aviators Application</title>
+    <link rel="stylesheet" href="CSS/styles.css">
+
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: linear-gradient( to bottom, #5d7189, #252767);
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin:0;
+        padding:0;
+    }
+
+    form{
+        width:500px;
+        background-color: #f7f9fc;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        margin: 40px auto;
+    }
+
+    fieldset{
+        margin-bottom:18px;
+        border:1px solid #c7d2e0;
+        padding: 15px;
+        background:white
+    }
+
+    legend{
+        font-weight:bold;
+        color: #252767;
+        padding: 0 8px;
+    }
+
+    label {
+        display:block;
+        margin-top:10px;
+        color:#2c3e50;
+        font-size:14px;
+    }
+
+    input,
+    select,
+    textarea{
+        width:100%;
+        padding:9px;
+        margin-top:5px;
+        border:1px solid #b0bfd6;
+        border-radius:5px;
+        background: eef3f9;
+        transition:0.3s;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus{
+        outline:none;
+        border-color:#252767;
+        background:white;
+        box-shadow:0 0 5px rgba(37,39,103,0.4);
+    }
+
+    input[type="radio"],
+    input[type="checkbox"]{
+        width:auto;
+        margin-right:6px;
+    }
+
+    button{
+        margin-top:15px;
+        padding:12px;
+        width:100%;
+        border:none;
+        border-radius:6px;
+        font-weight:bold;
+        cursor:pointer;
+        transition:0.3s;
+    }
+
+    button[type="submit"]{
+        background-color:#252767;
+        color:white;
+    }
+
+    button[type="submit"]:hover{
+        background-color:#1b1d4f;
+    }
+
+    button[type="reset"]{
+        background-color:#5d7189;
+        color:white;
+    }
+
+    header.header{
+        width:100%;
+        text-align: center;
+        padding: 20px 0;
+        background:#4a4a4a;
+        color:white
+    }
+
+header.header h1{
+    margin:0;
+    font-size: 28px;
+}
+
+header.header nav ul{
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display:flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header.header nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight: bold;
+}
+header.header nav ul li a:hover{
+    text-decoration: underline;
+}
+
+    </style>
+    
+</head>
+
+<body>
+
+<header class="header">
+
+    <h1>Young Aviators Application Form</h1>
+
+<nav>
+    <ul>
+       <li> <a href="index.html">Home</a></li>
+        
+       <li> <a href="about.html">About</a></li>
+
+       <li> <a href="contact.html">Contact</a></li>
+        
+       <li><a href="Forms.html">Forms</a></li>
+       </ul>
+</nav>
+</header>
+
+<form>
+
+<fieldset>
+    <legend>Student Information</legend>
+    
+    <label>Full Name:</label>
+    <input type="text" required>
+
+    <label>Date of Birth:</label>
+    <input type="date" required>
+
+    <label>Gender:</label>
+   <label> <input type="radio" name="gender"> Male</label>
+    <label> <input type="radio" name="gender"> Female</label>
+    <label> <input type="radio" name="gender"> Other</label>
+
+    <label>School Name:</label>
+    <input type="text" required>
+
+    <label>Nationality:</label>
+    <input type="text" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Parent/Guardian Information</legend>
+
+        <label>Parent/Guardian Name:</label>
+        <input type="text" required>
+
+        <label>Contact Number:</label>
+        <input type="tel" required>
+
+        <label>Email Address:</label>
+        <input type="email" required>
+
+        <label> Home Address:</label>
+        <input type="text" required>
+    </fieldset>
+
+    <fieldset>
+        <legend>Flight Training Program</legend>
+        
+        <label>Select Program:</label>
+        <select required>
+            <option value="">Choose a program</option>
+            <option value="basic">CPL- SINGLE ENGINE</option>
+            <option value="advanced">CPL- MULTI ENGINE</option>
+        </select>
+    
+    <label>Preferred Start Date:</label>
+    <input type="date" required>
+
+
+    <label>Training Type:</label>
+   <label> <input type="radio" name="training"> Full-time</label>
+    <label> <input type="radio" name="training"> Part-time</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Aviation Interest</legend>
+
+        <label>Why do you want to become a pilot?</label>
+        <textarea rows="4" cols="50" required></textarea>
+
+        <label>Do you have any prior aviation experience?</label>
+        <label><input type="radio" name="experience"> Yes</label>
+        <label><input type="radio" name="experience"> No</label>
+
+        <label>Favorite Aircraft:</label>
+        <input type="text">
+    </fieldset>
+
+<fieldset>
+    <legend>Medical & Safety Information</legend>
+
+    <label>Do you have any medical conditions that may affect your ability to fly?</label>
+   <label> <input type="radio" name="medical"> Yes</label>
+    <label> <input type="radio" name="medical"> No</label>
+
+    <label>Emergency Contact Name:</label>
+    <input type="text" required>
+
+    <label>Emergency Contact Number:</label>
+    <input type="tel" required>
+</fieldset>
+
+<fieldset>
+    <legend>Where did you hear about our flight training program?</legend>
+    <input type="text" required>
+</fieldset>
+
+<button type="submit">Submit Application</button>
+<button type="reset">Reset Form</button>
+</form>
+
+</body>
+</html>
