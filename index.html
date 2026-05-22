@@ -1,55 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air Tech Aviation School | Maun, Botswana</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Tech Aviation School | Elevate Her Future</title>
+  <meta name="description" content="Air Tech Aviation School — empowering young women in Botswana to pursue careers in aviation. CPL, Drone Ops, ATC & more.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+  <style>
+   
+    .hero {
+      min-height: calc(100vh - 73px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 65% 50%, rgba(168,85,247,0.2) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 50% at 85% 20%, rgba(236,72,153,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(192,132,252,0.1) 0%, transparent 55%);
+      z-index: 0;
+    }
+    .runway-lines {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 280px;
+      background: repeating-linear-gradient(90deg, transparent 0, transparent 48%, rgba(255,255,255,0.03) 48%, rgba(255,255,255,0.03) 52%, transparent 52%, transparent 100%);
+      opacity: 0.6;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 620px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--sky-blue); margin-bottom: 24px;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--sky-blue); border-radius: 1px; }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.6rem, 8vw, 7rem);
+      letter-spacing: 0.05em; line-height: 0.92; margin-bottom: 28px;
+    }
+    .hero-title .line-2 { color: var(--grad-pink); display: block; }
+    .hero-title .line-3 { color: var(--grad-purple-light); display: block; font-size: 0.65em; }
+    .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 42px; line-height: 1.75; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-discovery {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(236,72,153,0.5);
+      padding: 14px 32px; border-radius: 8px;
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem;
+      letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+      transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-discovery:hover { border-color: var(--grad-pink); color: var(--grad-pink); transform: translateY(-2px); }
+    
+    .hero-visual {
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+      width: 46%; max-width: 560px; z-index: 1; pointer-events: none;
+    }
+    .hero-ring {
+      width: 100%; aspect-ratio: 1; border-radius: 50%;
+      border: 1px solid rgba(168,85,247,0.3); position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      animation: pulseRing 4s ease-in-out infinite;
+    }
+    .hero-ring:nth-child(2) { width: 78%; animation-delay: 1s; border-color: rgba(236,72,153,0.2); }
+    .hero-ring:nth-child(3) { width: 55%; animation-delay: 2s; border-color: rgba(192,132,252,0.15); }
+    @keyframes pulseRing {
+      0%, 100% { opacity: 0.4; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 0.9; transform: translate(-50%,-50%) scale(1.04); }
+    }
+    .hero-logo-big {
+      width: 62%; display: block; margin: auto; position: relative; z-index: 2;
+      filter: drop-shadow(0 0 40px rgba(236,72,153,0.4)) drop-shadow(0 0 80px rgba(168,85,247,0.3));
+      animation: floatLogo 6s ease-in-out infinite;
+    }
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+  
+    .stats-banner {
+      background: var(--card-bg);
+      border-top: 1px solid var(--glass-border);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 40px 0;
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+   
+    .programs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; }
+    .program-card { position: relative; overflow: hidden; }
+    .program-card-inner { padding: 32px 28px; }
+    .program-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--grad-full);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 20px;
+    }
+    .program-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; color: var(--white); }
+    .program-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 20px; }
+    .program-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--grad-full); transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .program-card:hover::before { transform: scaleX(1); }
+    
+    .mission-strip {
+      background: linear-gradient(135deg, rgba(168,85,247,0.15), rgba(236,72,153,0.1));
+      border: 1px solid rgba(168,85,247,0.25); border-radius: 20px; padding: 60px 70px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .mission-strip h2 { font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; margin-bottom: 18px; }
+    .mission-strip p { color: var(--text-muted); font-size: 1rem; margin-bottom: 14px; }
+    .mission-list { list-style: none; margin-top: 24px; }
+    .mission-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; color: var(--off-white); font-size: 0.95rem; }
+    .mission-list li::before { content: '✦'; color: var(--grad-pink); flex-shrink: 0; margin-top: 2px; }
+    .mission-img-placeholder {
+      width: 100%; aspect-ratio: 4/3; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.18));
+      border: 1px solid var(--glass-border);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    }
+    .mission-img-placeholder img { height: 100px; opacity: 0.7; filter: drop-shadow(0 0 20px rgba(236,72,153,0.5)); }
+    .mission-img-placeholder p { color: var(--text-muted); font-size: 0.85rem; font-style: italic; }
+    
+    .map-section { padding: 60px 0; }
+    #home-map { height: 380px; width: 100%; border-radius: 16px; overflow: hidden; border: 1px solid var(--glass-border); }
+    
+    .cta-banner {
+      background: var(--grad-full); border-radius: 20px; padding: 70px 60px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; top: -40%; right: -10%;
+      width: 400px; height: 400px; border-radius: 50%; background: rgba(255,255,255,0.06);
+    }
+    .cta-banner h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; position: relative; }
+    .cta-banner p { color: rgba(255,255,255,0.85); font-size: 1.05rem; max-width: 520px; margin: 0 auto 36px; position: relative; }
+    @media (max-width: 900px) {
+      .hero-visual { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .mission-strip { grid-template-columns: 1fr; padding: 40px 30px; gap: 30px; }
+    }
+    @media (max-width: 600px) {
+      .cta-banner { padding: 50px 28px; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
-        <h1>Air Tech</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="programs.html">Programs</a>
-            <a href="enroll.html">Enroll Now</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="runway-lines"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Maun, Botswana · Est. 2024</div>
+        <h1 class="hero-title">
+          Elevate
+          <span class="line-2">Her Future</span>
+          <span class="line-3">Air Tech Aviation School</span>
+        </h1>
+        <p class="hero-sub">
+          Botswana's premier aviation training school, designed to empower young women 
+          and aspiring aviators to break barriers and take flight — literally.
+        </p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">Apply Now ›</a>
+          <a href="contact.html" class="btn-discovery">✈ Book Discovery Flight</a>
+        </div>
+      </div>
     </div>
-</header>
+    <div class="hero-visual">
+      <div class="hero-ring"></div>
+      <div class="hero-ring"></div>
+      <div class="hero-ring"></div>
+      <img src="images/1PSSH.jpg" alt="Air Tech Logo" class="hero-logo-big">
+    </div>
+  </section>
 
-<main>
-    <h1>Welcome to Air Tech Aviation School</h1>
-    <p>Empowering young girls and women to soar in aviation. Safe • Affordable • Inclusive • Located in Maun, Botswana.</p>
-    
-    <img src="1PSSH.jpg" alt="Air Tech Logo" style="max-width:420px;">
+ 
+  <div class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Students / Semester</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Specialist Programs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">70–100%</div>
+          <div class="stat-label">Annual Pass Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">SADC</div>
+          <div class="stat-label">Regional Reach</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <h2>Our Mission</h2>
-    <p>To break barriers in aviation by creating opportunities for young women and increasing gender diversity in the industry.</p>
+ 
+  <section class="section">
+    <div class="container">
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Our <span>Programs</span></h2>
+      <p class="section-desc">Industry-aligned programs built for the skies of tomorrow — from commercial pilots to drone specialists.</p>
+      <div class="programs-grid">
+        <div class="glass-card program-card">
+          <div class="program-card-inner">
+            <div class="program-icon">✈️</div>
+            <span class="tag tag-magenta">Flagship</span>
+            <h3>Commercial Pilot License (CPL)</h3>
+            <p>Full flight training in Maun's unique airspace — one of Africa's busiest light-aviation hubs.</p>
+            <a href="contact.html" class="btn btn-outline" style="padding:10px 22px;font-size:0.88rem;">Enquire →</a>
+          </div>
+        </div>
+        <div class="glass-card program-card">
+          <div class="program-card-inner">
+            <div class="program-icon">🚁</div>
+            <span class="tag tag-purple">Growing Fast</span>
+            <h3>Drone Operations & Remote Sensing</h3>
+            <p>RPAS certification covering commercial, survey, photography and agricultural drone applications.</p>
+            <a href="contact.html" class="btn btn-outline" style="padding:10px 22px;font-size:0.88rem;">Enquire →</a>
+          </div>
+        </div>
+        <div class="glass-card program-card">
+          <div class="program-card-inner">
+            <div class="program-icon">📡</div>
+            <span class="tag tag-sky">In Demand</span>
+            <h3>Air Traffic Control (ATC)</h3>
+            <p>Ground-to-air communication, radar interpretation, and airspace management training.</p>
+            <a href="contact.html" class="btn btn-outline" style="padding:10px 22px;font-size:0.88rem;">Enquire →</a>
+          </div>
+        </div>
+        <div class="glass-card program-card">
+          <div class="program-card-inner">
+            <div class="program-icon">🔧</div>
+            <span class="tag tag-purple">Hands-On</span>
+            <h3>Aircraft Maintenance Engineering</h3>
+            <p>Practical maintenance and engineering skills on real aircraft in our fully equipped hangar.</p>
+            <a href="contact.html" class="btn btn-outline" style="padding:10px 22px;font-size:0.88rem;">Enquire →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <h2>Our Location – Maun, Botswana</h2>
-    <div id="map"></div>
-</main>
 
-<footer>
-    <p>&copy; 2026 Air Tech Aviation School | Maun, Botswana</p>
-    <p>Empowering Women in Aviation • Diversity • Excellence • Opportunity</p>
-</footer>
+  <section class="section-sm">
+    <div class="container">
+      <div class="mission-strip">
+        <div>
+          <p class="section-label">Our Mission</p>
+          <h2>Breaking Barriers<br><span style="color:var(--grad-pink)">One Flight at a Time</span></h2>
+          <p>Air Tech was founded on a simple but powerful truth: aviation needs more women. The Civil Aviation Authority of Botswana recognises Maun as Botswana's primary aviation gateway, with over 69.6% of all charter movements in the country occurring here.</p>
+          <p>We put our students at the heart of that ecosystem — giving them real flight hours, real networks, and real futures.</p>
+          <ul class="mission-list">
+            <li>Full-time, part-time &amp; international study modes available</li>
+            <li>Affordable, structured fee schedules with scholarship pathways</li>
+            <li>Annual aviation summits &amp; industry networking events</li>
+            <li>Partnerships with SADC aviation organisations</li>
+          </ul>
+        </div>
+        <div>
+          <div class="mission-img-placeholder">
+            <img src="images/1PSSH.jpg" alt="Air Tech Aviation">
+            <p>Students in training · Maun, Botswana</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-    const map = L.map('map').setView([-19.9833, 23.4167], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+ 
+  <section class="map-section">
+    <div class="container">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title" style="margin-bottom:12px;">Our <span>Location</span></h2>
+      <p style="color:var(--text-muted);margin-bottom:28px;font-size:1rem;">Airport Road, Maun, Botswana — in the heart of Southern Africa's busiest charter aviation hub.</p>
+      <div id="home-map"></div>
+    </div>
+  </section>
 
-    L.marker([-19.9833, 23.4167]).addTo(map)
-        .bindPopup('<b>Air Tech Aviation School</b><br>Maun, Botswana')
-        .openPopup();
-</script>
+  
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Your Runway Starts Here</h2>
+        <p>Applications are open for the next intake. Limited seats — enroll today and take the first step toward the sky.</p>
+        <a href="contact.html" class="btn" style="background:white;color:var(--grad-pink);font-weight:700;">Start Your Application →</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script>
+    const map = L.map('home-map', { scrollWheelZoom: false }).setView([-19.9833, 23.4167], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap', maxZoom: 19 }).addTo(map);
+    L.marker([-19.9833, 23.4167]).addTo(map).bindPopup('<strong>Air Tech Aviation School</strong><br>Airport Road, Maun').openPopup();
+  </script>
+  <script src="js/shared-nav.js"></script>
 </body>
 </html>
