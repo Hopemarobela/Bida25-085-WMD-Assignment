@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Us | Air Tech Aviation School</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .company-box {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .company-box-inner {
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .company-box-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(236,72,153,0.2));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+    .company-box h3 { font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .company-box p { color: var(--text-muted); font-size: 0.93rem; line-height: 1.7; }
+
+    
+    .achievements-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .achievement-list {
+      list-style: none;
+    }
+    .achievement-list li {
+      padding: 12px 16px;
+      border-left: 3px solid var(--grad-pink);
+      background: var(--card-bg);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 10px;
+      color: var(--off-white);
+      font-size: 0.92rem;
+    }
+    .achievement-img-box {
+      border-radius: 16px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(168,85,247,0.25), rgba(236,72,153,0.15));
+      border: 1px solid var(--glass-border);
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .achievement-stat-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .achievement-stat-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      text-align: center;
+    }
+    .achievement-stat-pill .big { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; background: var(--grad-full); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+    .achievement-stat-pill .lbl { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    .students-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .student-card { padding: 28px 24px; text-align: center; }
+    .student-avatar {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px;
+      background: var(--grad-full);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: white;
+      box-shadow: 0 0 0 3px rgba(236,72,153,0.3);
+    }
+    .student-card h4 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .student-card .role { font-size: 0.8rem; color: var(--grad-pink); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .student-speech {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-style: italic;
+      position: relative;
+    }
+    .student-speech::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 50%; transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--glass-border);
+    }
+
+    
+    .reviews-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .reviews-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    .reviews-table thead tr { background: linear-gradient(135deg, rgba(168,85,247,0.35), rgba(236,72,153,0.2)); }
+    .reviews-table th { padding: 14px 18px; text-align: left; font-family: 'Rajdhani', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--off-white); }
+    .reviews-table tbody tr { background: var(--card-bg); border-bottom: 1px solid var(--glass-border); }
+    .reviews-table tbody tr:hover { background: rgba(168,85,247,0.08); }
+    .reviews-table td { padding: 13px 18px; font-size: 0.9rem; color: var(--off-white); }
+    .stars { color: #fbbf24; letter-spacing: 2px; }
+    .rates-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+    .rates-list li { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 10px; }
+    .rates-list .rate-label { font-size: 0.9rem; color: var(--off-white); }
+    .rates-list .rate-bar { flex: 1; margin: 0 14px; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+    .rates-list .rate-fill { height: 100%; background: var(--grad-full); border-radius: 3px; }
+    .rates-list .rate-pct { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; background: var(--grad-full); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+   
+    .compare-wrap { overflow-x: auto; }
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--glass-border); min-width: 560px; }
+    .compare-table thead tr { background: linear-gradient(135deg, rgba(168,85,247,0.4), rgba(236,72,153,0.25)); }
+    .compare-table th { padding: 16px 22px; text-align: left; font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .compare-table th:first-child { color: var(--text-muted); }
+    .compare-table th:nth-child(2) { color: var(--grad-pink); }
+    .compare-table th:nth-child(3) { color: var(--text-muted); }
+    .compare-table tbody tr { background: var(--card-bg); border-bottom: 1px solid var(--glass-border); transition: background 0.2s; }
+    .compare-table tbody tr:hover { background: rgba(168,85,247,0.08); }
+    .compare-table td { padding: 15px 22px; font-size: 0.92rem; color: var(--off-white); }
+    .compare-table td:first-child { color: var(--text-muted); font-weight: 600; }
+    .check { color: #4ade80; font-size: 1.1rem; }
+    .cross { color: var(--text-muted); font-size: 1.1rem; }
+
+    @media (max-width: 900px) {
+      .company-grid { grid-template-columns: 1fr; }
+      .achievements-layout { grid-template-columns: 1fr; }
+      .students-grid { grid-template-columns: 1fr; }
+      .reviews-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">The Air Tech Advantage</p>
+      <h1>Why Come to <span style="color:var(--grad-pink)">Air Tech?</span></h1>
+      <p>Botswana's first aviation school built specifically to empower women and aspiring aviators.</p>
+    </div>
+  </div>
+
+  <!-- ══ Our Company ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Who We Are</p>
+      <h2 class="section-title">Our <span>Company</span></h2>
+      <p class="section-desc">A pioneering force in Southern African aviation education, built from the ground up in Maun — the continent's charter flight capital.</p>
+
+      <div class="company-grid">
+        <div class="glass-card company-box">
+          <div class="company-box-inner">
+            <div class="company-box-img">✈️</div>
+            <h3>World-Class Training Facility</h3>
+            <p>Situated in Maun — which handles 69.6% of all charter movements in Botswana — our students train in real, active airspace daily. Our hangar, simulators, and classroom facilities are built to international CAAB standards.</p>
+            <a href="about.html" class="btn btn-outline" style="width:fit-content;padding:10px 22px;font-size:0.88rem;">Learn More →</a>
+          </div>
+        </div>
+        <div class="glass-card company-box">
+          <div class="company-box-inner">
+            <div class="company-box-img">👩‍✈️</div>
+            <h3>Empowering Women in Aviation</h3>
+            <p>Air Tech was founded to close the gender gap in Botswana's aviation sector. From scholarship pathways to flexible study modes designed for mothers and working women, every program is built with our students' lives in mind.</p>
+            <a href="team.html" class="btn btn-outline" style="width:fit-content;padding:10px 22px;font-size:0.88rem;">Meet Our Team →</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:12px;">
+        <a href="contact.html" class="btn btn-primary">✈ Book a Discovery Flight</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Achievements ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Track Record</p>
+      <h2 class="section-title">Achievements &amp; What We Are <span>Known For</span></h2>
+      <p class="section-desc">Numbers and milestones that reflect our commitment to excellence and impact.</p>
+
+      <div class="achievements-layout">
+        <div>
+          <ul class="achievement-list">
+            <li>First women-focused aviation school in Botswana</li>
+            <li>70–100% annual exam pass rate target — published yearly</li>
+            <li>CAAB-compliant curriculum across all 4 programs</li>
+            <li>85% graduate placement rate in first cohort</li>
+            <li>SADC-wide scholarship program active since 2024</li>
+            <li>Annual Aviation Summit — 200+ industry attendees</li>
+          </ul>
+        </div>
+        <div class="achievement-img-box">🏆</div>
+        <div class="achievement-stat-col">
+          <div class="achievement-stat-pill">
+            <div class="big">500+</div>
+            <div class="lbl">Students / Semester</div>
+          </div>
+          <div class="achievement-stat-pill">
+            <div class="big">4</div>
+            <div class="lbl">Programs Offered</div>
+          </div>
+          <div class="achievement-stat-pill">
+            <div class="big">85%</div>
+            <div class="lbl">Graduate Placement</div>
+          </div>
+          <div class="achievement-stat-pill">
+            <div class="big">SADC</div>
+            <div class="lbl">Regional Reach</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Top Students ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Student Voices</p>
+      <h2 class="section-title">Top Students &amp; Their <span>Experience</span></h2>
+      <p class="section-desc">Hear directly from the students who've lived the Air Tech journey.</p>
+
+      <div class="students-grid">
+        <div class="glass-card student-card">
+          <div class="student-avatar">TM</div>
+          <h4>Tshegofatso Moeti</h4>
+          <p class="role">CPL Student · Gaborone</p>
+          <div class="student-speech">
+            "Air Tech didn't just teach me to fly — it showed me a whole industry that I now know I belong in. The Maun airspace experience is something no classroom can replace."
+          </div>
+        </div>
+        <div class="glass-card student-card">
+          <div class="student-avatar">LK</div>
+          <h4>Lesego Kgomotso</h4>
+          <p class="role">Career Changer · Francistown</p>
+          <div class="student-speech">
+            "I was a corporate accountant at 28. Air Tech's part-time mode meant I could train without leaving my job. Now I'm qualifying for my commercial license."
+          </div>
+        </div>
+        <div class="glass-card student-card">
+          <div class="student-avatar">NB</div>
+          <h4>Naledi Badiri</h4>
+          <p class="role">Drone Ops Graduate</p>
+          <div class="student-speech">
+            "The drone program is exceptional. Air Tech gave me the RPAS certification and the business skills to turn wildlife photography from the air into a real career."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Reviews & Ratings ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">What People Say</p>
+      <h2 class="section-title">Reviews &amp; <span>Ratings</span></h2>
+
+      <div class="reviews-layout">
+        <div>
+          <table class="reviews-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Program</th>
+                <th>Rating</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>T. Moeti</td>
+                <td>CPL</td>
+                <td><span class="stars">★★★★★</span></td>
+                <td>Life-changing experience</td>
+              </tr>
+              <tr>
+                <td>L. Kgomotso</td>
+                <td>CPL (Part-time)</td>
+                <td><span class="stars">★★★★★</span></td>
+                <td>Flexible and excellent</td>
+              </tr>
+              <tr>
+                <td>N. Badiri</td>
+                <td>Drone Ops</td>
+                <td><span class="stars">★★★★★</span></td>
+                <td>Best drone program in SADC</td>
+              </tr>
+              <tr>
+                <td>O. Ntshebe</td>
+                <td>ATC</td>
+                <td><span class="stars">★★★★☆</span></td>
+                <td>Outstanding instructors</td>
+              </tr>
+              <tr>
+                <td>K. Segwai</td>
+                <td>Aircraft Maint.</td>
+                <td><span class="stars">★★★★★</span></td>
+                <td>Hands-on, practical training</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:20px;color:var(--white);">Overall Rates</h3>
+          <ul class="rates-list">
+            <li>
+              <span class="rate-label">Curriculum Quality</span>
+              <div class="rate-bar"><div class="rate-fill" style="width:95%"></div></div>
+              <span class="rate-pct">95%</span>
+            </li>
+            <li>
+              <span class="rate-label">Instructors</span>
+              <div class="rate-bar"><div class="rate-fill" style="width:98%"></div></div>
+              <span class="rate-pct">98%</span>
+            </li>
+            <li>
+              <span class="rate-label">Facilities</span>
+              <div class="rate-bar"><div class="rate-fill" style="width:90%"></div></div>
+              <span class="rate-pct">90%</span>
+            </li>
+            <li>
+              <span class="rate-label">Job Placement</span>
+              <div class="rate-bar"><div class="rate-fill" style="width:85%"></div></div>
+              <span class="rate-pct">85%</span>
+            </li>
+            <li>
+              <span class="rate-label">Value for Money</span>
+              <div class="rate-bar"><div class="rate-fill" style="width:92%"></div></div>
+              <span class="rate-pct">92%</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+ 
+  <section class="section">
+    <div class="container">
+      <p class="section-label">How We Compare</p>
+      <h2 class="section-title">Air Tech vs <span>Typical Aviation Schools</span></h2>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>✈ Air Tech</th>
+              <th>Typical Provider</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Women-focused program design</td><td><span class="check">✔ Yes</span></td><td><span class="cross">✘ Rarely</span></td></tr>
+            <tr><td>Maun real-world airspace training</td><td><span class="check">✔ Included</span></td><td><span class="cross">✘ Not available</span></td></tr>
+            <tr><td>Part-time &amp; international modes</td><td><span class="check">✔ All modes</span></td><td><span class="cross">✘ Full-time only</span></td></tr>
+            <tr><td>Structured affordability / scholarships</td><td><span class="check">✔ Active</span></td><td><span class="cross">✘ Limited</span></td></tr>
+            <tr><td>Industry networking events</td><td><span class="check">✔ Annual summits</span></td><td><span class="cross">✘ Ad hoc</span></td></tr>
+            <tr><td>Published pass-rate targets</td><td><span class="check">✔ 70–100%</span></td><td><span class="cross">✘ Not published</span></td></tr>
+            <tr><td>Drone &amp; RPAS specialisation</td><td><span class="check">✔ Dedicated track</span></td><td><span class="cross">✘ Generic only</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <script src="js/shared-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team | Air Tech Aviation School</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    
+    .instructors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .instructor-card {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .instructor-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--grad-full);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .instructor-card:hover::before { transform: scaleX(1); }
+    .inst-avatar {
+      flex-shrink: 0;
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--grad-full);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: white;
+      box-shadow: 0 0 0 3px rgba(236,72,153,0.3);
+    }
+    .inst-info h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .inst-role { font-family: 'Rajdhani', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grad-pink); margin-bottom: 10px; }
+    .inst-bio { color: var(--text-muted); font-size: 0.87rem; line-height: 1.65; margin-bottom: 12px; }
+    .inst-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    
+    .staff-section-title {
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .staff-section-title::before {
+      content: '';
+      display: block; width: 32px; height: 3px;
+      background: var(--grad-full); border-radius: 2px; flex-shrink: 0;
+    }
+
+    .staff-cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .staff-card {
+      display: flex; gap: 18px; align-items: flex-start; padding: 24px 22px;
+    }
+    .staff-avatar {
+      flex-shrink: 0; width: 52px; height: 52px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.45), rgba(236,72,153,0.35));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: white;
+    }
+    .staff-info h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .staff-info .staff-role { font-size: 0.78rem; color: var(--grad-pink); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+    .staff-info p { font-size: 0.85rem; color: var(--text-muted); }
+
+  
+    .community-card {
+      background: linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.08));
+      border: 1px solid rgba(168,85,247,0.25);
+      border-radius: 20px; padding: 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+    .community-icon { font-size: 5rem; text-align: center; }
+    .community-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
+    .community-card p { color: var(--text-muted); margin-bottom: 14px; }
+
+    
+    .board-list {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+    .board-item {
+      display: flex; gap: 18px; align-items: flex-start; padding: 24px;
+    }
+    .board-avatar {
+      flex-shrink: 0; width: 50px; height: 50px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(168,85,247,0.5), rgba(236,72,153,0.35));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: white;
+    }
+    .board-info h4 { font-size: 1rem; font-weight: 700; margin-bottom: 3px; color: var(--white); }
+    .board-info .role { font-size: 0.8rem; color: var(--grad-pink); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 7px; }
+    .board-info p { font-size: 0.88rem; color: var(--text-muted); }
+
+    
+    .hiring-strip {
+      background: linear-gradient(135deg, rgba(91,184,245,0.1), rgba(168,85,247,0.15));
+      border: 1px solid rgba(91,184,245,0.2);
+      border-radius: 16px; padding: 44px 50px;
+      display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+    }
+    .hiring-strip h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; }
+    .hiring-strip p { color: var(--text-muted); font-size: 0.95rem; max-width: 480px; }
+
+    @media (max-width: 900px) {
+      .instructors-grid { grid-template-columns: 1fr; }
+      .board-list { grid-template-columns: 1fr; }
+      .community-card { grid-template-columns: 1fr; }
+      .instructor-card { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-hero">
+    <div class="container">
+      <p class="section-label">The People Behind Air Tech</p>
+      <h1>Our <span style="color:var(--grad-pink)">Team</span></h1>
+      <p>Qualified aviators, dedicated educators, and passionate advocates for women in aerospace.</p>
+    </div>
+  </div>
+
+  <!-- ══ Instructors ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Core Faculty</p>
+      <h2 class="section-title">Meet Our <span>Instructors</span></h2>
+      <p class="section-desc">Our instructors are not just educators — they are active aviation professionals bringing real-world experience into every lesson.</p>
+
+      <div class="instructors-grid">
+        <div class="glass-card instructor-card">
+          <div class="inst-avatar">CC</div>
+          <div class="inst-info">
+            <h3>Capt. Charity Chanda</h3>
+            <div class="inst-role">Chief Flight Instructor</div>
+            <p class="inst-bio">Licensed ATPL holder with 14 years flying across the SADC region, including bush flying operations out of Maun and Kasane. Passionate about mentoring the next generation of female pilots.</p>
+            <div class="inst-tags">
+              <span class="tag tag-magenta">ATPL</span>
+              <span class="tag tag-purple">CPL Training</span>
+              <span class="tag tag-sky">14 Yrs XP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card instructor-card">
+          <div class="inst-avatar">DN</div>
+          <div class="inst-info">
+            <h3>Dr. Dineo Nkosi</h3>
+            <div class="inst-role">Academic Director</div>
+            <p class="inst-bio">PhD in Aviation Management from the University of Johannesburg. Former researcher at the Civil Aviation Authority of Botswana on gender parity in aviation. Author of three peer-reviewed papers on SADC aviation policy.</p>
+            <div class="inst-tags">
+              <span class="tag tag-purple">PhD</span>
+              <span class="tag tag-sky">CAAB Research</span>
+              <span class="tag tag-magenta">Policy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card instructor-card">
+          <div class="inst-avatar">KM</div>
+          <div class="inst-info">
+            <h3>Kwame Molefe</h3>
+            <div class="inst-role">Drone &amp; RPAS Lead</div>
+            <p class="inst-bio">RPAS specialist with certifications from the Civil Aviation Authority Botswana. Built and operated drone fleets for agricultural surveying and wildlife conservation across Botswana and Namibia.</p>
+            <div class="inst-tags">
+              <span class="tag tag-sky">RPAS Certified</span>
+              <span class="tag tag-purple">Survey Ops</span>
+              <span class="tag tag-magenta">AgriTech</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card instructor-card">
+          <div class="inst-avatar">TK</div>
+          <div class="inst-info">
+            <h3>Tumelo Kgosidiintsi</h3>
+            <div class="inst-role">ATC &amp; Ground Ops Instructor</div>
+            <p class="inst-bio">Former air traffic controller with Botswana's Department of Civil Aviation. 16 years in ATC operations at Sir Seretse Khama and Maun International airports. Specialist in student simulation training.</p>
+            <div class="inst-tags">
+              <span class="tag tag-magenta">Ex-BDCA ATC</span>
+              <span class="tag tag-purple">Simulator</span>
+              <span class="tag tag-sky">16 Yrs XP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Maintenance Crew ══ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="staff-section-title">Maintenance <span style="color:var(--grad-pink-light)">Crew</span></h2>
+      <p style="color:var(--text-muted);margin-bottom:30px;font-size:0.95rem;">Our licensed AMEs keep every aircraft in the fleet airworthy and conduct weekly hangar training sessions for Aircraft Maintenance Engineering students.</p>
+      <div class="staff-cards-row">
+        <div class="glass-card staff-card">
+          <div class="staff-avatar">AP</div>
+          <div class="staff-info">
+            <h4>Amogelang Pheto</h4>
+            <div class="staff-role">Aircraft Maintenance Lead</div>
+            <p>Licensed AME with hands-on experience across Cessna, Beechcraft, and Piper fleets. Runs practical hangar sessions weekly.</p>
+          </div>
+        </div>
+        <div class="glass-card staff-card">
+          <div class="staff-avatar">OM</div>
+          <div class="staff-info">
+            <h4>Onkabetse Moeng</h4>
+            <div class="staff-role">AME — Avionics Specialist</div>
+            <p>Specialist in avionics systems, GPS navigation equipment, and communication systems across the training fleet.</p>
+          </div>
+        </div>
+        <div class="glass-card staff-card">
+          <div class="staff-avatar">RT</div>
+          <div class="staff-info">
+            <h4>Reatile Tau</h4>
+            <div class="staff-role">Drone Fleet Technician</div>
+            <p>Responsible for RPAS maintenance, firmware updates, and battery management across all commercial drone platforms.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Security Team ══ -->
+  <section class="section">
+    <div class="container">
+      <h2 class="staff-section-title">Security <span style="color:var(--grad-pink-light)">Team</span></h2>
+      <p style="color:var(--text-muted);margin-bottom:30px;font-size:0.95rem;">Our security team ensures the safety of students, staff, aircraft, and campus facilities around the clock.</p>
+      <div class="staff-cards-row">
+        <div class="glass-card staff-card">
+          <div class="staff-avatar">SM</div>
+          <div class="staff-info">
+            <h4>Sipho Mthembu</h4>
+            <div class="staff-role">Head of Campus Security</div>
+            <p>15 years in security management across aviation and educational institutions in Botswana and South Africa.</p>
+          </div>
+        </div>
+        <div class="glass-card staff-card">
+          <div class="staff-avatar">KD</div>
+          <div class="staff-info">
+            <h4>Kefilwe Ditsheko</h4>
+            <div class="staff-role">Airside Safety Officer</div>
+            <p>Oversees all airside movement protocols, apron safety, and student pilot ground operations compliance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Community Support ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Outreach</p>
+      <h2 class="section-title">Community <span>Support</span></h2>
+      <div class="community-card">
+        <div>
+          <h3>Rooted in Botswana, Reaching SADC</h3>
+          <p>Air Tech's community programs actively engage secondary schools across Botswana, hosting aviation career days, scholarship information sessions, and mentorship partnerships with organisations working to increase girls' participation in STEM.</p>
+          <p>Our annual Aviation Summit brings together 200+ industry professionals, students, and partners — creating a network our graduates enter before they even graduate.</p>
+          <a href="contact.html" class="btn btn-primary" style="margin-top:8px;">Get Involved →</a>
+        </div>
+        <div class="community-icon">🌍</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ Advisory Board ══ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Industry Advisors</p>
+      <h2 class="section-title">Advisory <span>Board</span></h2>
+      <p class="section-desc">Experienced aviation and education leaders who guide Air Tech's strategic direction and industry alignment.</p>
+      <div class="board-list">
+        <div class="glass-card board-item">
+          <div class="board-avatar">RD</div>
+          <div class="board-info">
+            <h4>Refilwe Ditshego</h4>
+            <div class="role">CAAB Industry Liaison</div>
+            <p>Bridges Air Tech curriculum to Civil Aviation Authority Botswana standards and licensing requirements.</p>
+          </div>
+        </div>
+        <div class="glass-card board-item">
+          <div class="board-avatar">JM</div>
+          <div class="board-info">
+            <h4>Josephine Mwale</h4>
+            <div class="role">SADC Aviation Policy Advisor</div>
+            <p>Regional aviation policy expert supporting cross-border student recognition and qualification portability.</p>
+          </div>
+        </div>
+        <div class="glass-card board-item">
+          <div class="board-avatar">PO</div>
+          <div class="board-info">
+            <h4>Patrick Oduya</h4>
+            <div class="role">Technology &amp; Drone Industry</div>
+            <p>CEO of a regional drone services company, advising on curriculum relevance and emerging RPAS technology.</p>
+          </div>
+        </div>
+        <div class="glass-card board-item">
+          <div class="board-avatar">HM</div>
+          <div class="board-info">
+            <h4>Hope T. Marobela</h4>
+            <div class="role">Founder &amp; Director</div>
+            <p>Visionary behind Air Tech Aviation School — BI &amp; Data Analytics professional and advocate for women in aerospace.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="hiring-strip">
+        <div>
+          <h3>Join the Air Tech Team</h3>
+          <p>We're always looking for qualified aviation professionals, passionate educators, and support staff who share our vision. Help us shape the next generation of female aviators in Botswana.</p>
+        </div>
+        <a href="contact.html" class="btn btn-primary">Get in Touch →</a>
+      </div>
+    </div>
+  </section>
+  <script src="js/shared-nav.js"></script>
+</body>
+</html>
